@@ -4,7 +4,7 @@ const randomNumElem = document.getElementById("random-num");
 const resultElem = document.getElementById("result");
 
 // variabile input utente
-const allInputs = document.querySelectorAll("input[type=`number`]");
+const allInputs = document.querySelectorAll("input[type='number']");
 
 // inserimento numero random
 const randomNumber = randomNum(10000, 99999);
@@ -12,7 +12,7 @@ randomNumElem.innerHTML = randomNumber;
 
 // timer 30 secondi numero random
 setTimeout(function() {
-    randomNumber = "";
+    randomNumElem.innerHTML = "";
 }, 30000);
 
 // evento submit
@@ -22,15 +22,12 @@ formElem.addEventListener("submit", function(event) {
     // estrarre numeri utente e metterli in un array
     const userNumbers = [];
     for (let i = 0; i < allInputs.length; i++) {
-        userNumbers.push(parseInt(allInputs[i].ariaValueMax.trim()));
+        userNumbers.push(allInputs[i].value.trim());
     }
 
     // estrarre numeri random e metterli in un array
-    const randomNumArray = [];
-    for (let i = 0; i < randomNumber.length; i++) {
-        randomNumArray.push(randomNumber[i]);
-    }
-
+    const randomNumArray = randomNumElem.innerHTML.split("");
+    
     // confrontare i due array
     const matchedNumbers = [];
     for (let i = 0; i < userNumbers.length; i++) {
@@ -38,9 +35,9 @@ formElem.addEventListener("submit", function(event) {
             matchedNumbers.push(userNumbers[i]);
         }
     }
-
+    
     // inserire risultato
-    resultElem.innerHTML = matchedNumbers
+    resultElem.innerHTML = `Complimenti, hai indovinato ${matchedNumbers.length} numeri! (${matchedNumbers})`
 })
 
 // funzione numero random

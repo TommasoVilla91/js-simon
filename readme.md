@@ -11,8 +11,9 @@ funzione per generare numero random
 evocarlo e dagli un timer di 30 secondi
 
 #### Evento submit
-controllare i numeri dell'utente
-controllare quali cifre sono uguali al numero random 
+mettere i numeri dell'utente in array
+mettere i numeri random in array
+controllare quali cifre dei due array sono uguali
 
 #### output
 stampare messaggio con risultato

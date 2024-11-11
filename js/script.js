@@ -7,16 +7,40 @@ const resultElem = document.getElementById("result");
 const allInputs = document.querySelectorAll("input[type=`number`]");
 
 // inserimento numero random
-randomNumElem.innerHTML = randomNum(10000, 99999);
+const randomNumber = randomNum(10000, 99999);
+randomNumElem.innerHTML = randomNumber;
 
 // timer 30 secondi numero random
 setTimeout(function() {
-    randomNumElem.innerHTML = "";
+    randomNumber = "";
 }, 30000);
 
 // evento submit
 formElem.addEventListener("submit", function(event) {
     event.preventDefault();
+
+    // estrarre numeri utente e metterli in un array
+    const userNumbers = [];
+    for (let i = 0; i < allInputs.length; i++) {
+        userNumbers.push(parseInt(allInputs[i].ariaValueMax.trim()));
+    }
+
+    // estrarre numeri random e metterli in un array
+    const randomNumArray = [];
+    for (let i = 0; i < randomNumber.length; i++) {
+        randomNumArray.push(randomNumber[i]);
+    }
+
+    // confrontare i due array
+    const matchedNumbers = [];
+    for (let i = 0; i < userNumbers.length; i++) {
+        if (randomNumArray.includes(userNumbers[i])) {
+            matchedNumbers.push(userNumbers[i]);
+        }
+    }
+
+    // inserire risultato
+    resultElem.innerHTML = matchedNumbers
 })
 
 // funzione numero random
